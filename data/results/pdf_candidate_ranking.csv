@@ -1,0 +1,2 @@
+Rank,Resume,Matched_Skills,Skill_Score,Experience_Match,Education_Match,Rule_Based_Score,TFIDF_Score,Combined_Score
+1,sample_resume.pdf,"python, java, sql, html, css, javascript, communication, problem solving, apis",90.0,1,1,94.0,25.94,73.58

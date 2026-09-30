@@ -1,0 +1,20 @@
+Software Developer
+
+Job Description:
+We are looking for a Software Developer to join our technology team.
+
+Requirements:
+- Bachelor's degree in Computer Science or related field
+- 2+ years of experience in software development
+- Strong knowledge of Python and Java
+- Knowledge of SQL and databases
+- Experience with HTML, CSS and JavaScript
+- Good problem solving and communication skills
+- Knowledge of Machine Learning is a plus
+
+Responsibilities:
+- Develop and maintain software applications
+- Write clean and efficient code
+- Work with databases and APIs
+- Collaborate with team members
+- Debug and test applications

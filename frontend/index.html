@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Screening</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <div>
+                    <h2>ResumeAI</h2>
+                    <span>Smart Recruitment</span>
+                </div>
+            </div>
+
+
+            <nav>
+
+                <a class="active">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    Dashboard
+                </a>
+
+                <a>
+                    <i class="fa-solid fa-file-lines"></i>
+                    Resume Screening
+                </a>
+
+                <a>
+                    <i class="fa-solid fa-user-group"></i>
+                    Candidates
+                </a>
+
+                <a>
+                    <i class="fa-solid fa-briefcase"></i>
+                    Job Description
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="ai-box">
+
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                    <div>
+                        <b>AI Powered</b>
+                        <small>Smart candidate analysis</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main">
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Resume Screening Dashboard</h1>
+
+                    <p>
+                        Analyze and shortlist candidates using AI
+                    </p>
+                </div>
+
+
+                <div class="profile">
+
+                    <div class="profile-icon">
+                        AG
+                    </div>
+
+                    <div>
+                        <b>Recruiter</b>
+                        <small>Admin</small>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- WELCOME BANNER -->
+
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <span class="badge">
+                        <i class="fa-solid fa-bolt"></i>
+                        AI Powered Screening
+                    </span>
+
+                    <h2>
+                        Find the right candidate
+                        <span>faster.</span>
+                    </h2>
+
+                    <p>
+                        Upload a resume and let our AI analyze
+                        skills, experience, education and job relevance.
+                    </p>
+
+                </div>
+
+
+                <div class="hero-icon">
+
+                    <i class="fa-solid fa-brain"></i>
+
+                </div>
+
+            </section>
+
+
+            <!-- UPLOAD -->
+
+            <section class="upload-card">
+
+                <div class="section-title">
+
+                    <div class="title-icon">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+
+                    <div>
+                        <h2>Screen a Resume</h2>
+
+                        <p>
+                            Upload a PDF resume to start AI analysis
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="upload-area">
+
+                    <div class="upload-icon">
+
+                        <i class="fa-solid fa-file-pdf"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Upload your resume
+                    </h3>
+
+
+                    <p>
+                        PDF files only • Maximum recommended size 10MB
+                    </p>
+
+
+                    <label class="choose-btn">
+
+                        <i class="fa-solid fa-folder-open"></i>
+
+                        Choose Resume
+
+                        <input
+                            type="file"
+                            id="resumeFile"
+                            accept=".pdf"
+                        >
+
+                    </label>
+
+
+                    <button
+                        class="screen-btn"
+                        onclick="screenResume()"
+                    >
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                        Analyze Resume
+
+                    </button>
+
+                </div>
+
+
+                <div id="status"></div>
+
+            </section>
+
+
+            <!-- RESULT -->
+
+            <section
+                id="result"
+                class="result-section"
+            >
+
+                <div class="empty-result">
+
+                    <div class="empty-icon">
+
+                        <i class="fa-solid fa-chart-simple"></i>
+
+                    </div>
+
+                    <h2>
+                        Candidate Analysis
+                    </h2>
+
+                    <p>
+                        Upload a resume above to view AI-generated
+                        screening results.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer>
+
+                <span>
+                    © 2026 ResumeAI
+                </span>
+
+                <span>
+                    AI Resume Screening & Candidate Shortlisting
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

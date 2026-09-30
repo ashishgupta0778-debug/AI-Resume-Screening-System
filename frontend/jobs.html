@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Job Management - ResumeAI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <div>
+                <h2>ResumeAI</h2>
+                <span>Smart Recruitment</span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                Dashboard
+
+            </a>
+
+
+            <a class="active">
+
+                <i class="fa-solid fa-briefcase"></i>
+
+                Jobs
+
+            </a>
+
+
+            <a href="index.html">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                Resume Screening
+
+            </a>
+
+
+            <a href="index.html">
+
+                <i class="fa-solid fa-user-group"></i>
+
+                Candidates
+
+            </a>
+
+
+            <a href="index.html">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                Screening History
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="ai-box">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                <div>
+
+                    <b>AI Powered</b>
+
+                    <small>
+                        Smart candidate analysis
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Job Management</h1>
+
+                <p>
+                    Create and manage job descriptions
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="profile-icon">
+                    AG
+                </div>
+
+                <div>
+
+                    <b>Recruiter</b>
+
+                    <small>
+                        Admin
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CREATE JOB -->
+
+        <section class="upload-card">
+
+            <div class="section-title">
+
+                <div class="title-icon">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+                        Create New Job
+                    </h2>
+
+                    <p>
+                        Add a job description for AI-based candidate matching
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="jobForm">
+
+
+                <!-- JOB TITLE -->
+
+                <div class="form-group">
+
+                    <label>
+                        Job Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="jobTitle"
+                        placeholder="e.g. Software Developer"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- JOB DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label>
+                        Job Description
+                    </label>
+
+                    <textarea
+                        id="jobDescription"
+                        rows="8"
+                        placeholder="Paste the complete job description here..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- EXPERIENCE -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            Required Experience
+                        </label>
+
+                        <div class="input-with-text">
+
+                            <input
+                                type="number"
+                                id="experience"
+                                min="0"
+                                placeholder="2"
+                            >
+
+                            <span>
+                                Years
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EDUCATION -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Education
+                        </label>
+
+                        <select id="education">
+
+                            <option value="">
+                                Select Education
+                            </option>
+
+                            <option>
+                                Bachelor's Degree
+                            </option>
+
+                            <option>
+                                Master's Degree
+                            </option>
+
+                            <option>
+                                B.Tech / B.E
+                            </option>
+
+                            <option>
+                                MCA
+                            </option>
+
+                            <option>
+                                MBA
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="screen-btn"
+                        onclick="analyzeJob()"
+                    >
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                        Analyze Job Description
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+
+        <!-- AI RESULT -->
+
+        <section
+            id="jobResult"
+            class="result-section"
+        >
+
+        </section>
+
+
+        <!-- SAVED JOBS -->
+
+        <section class="upload-card">
+
+            <div class="section-title">
+
+                <div class="title-icon">
+
+                    <i class="fa-solid fa-folder-open"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+                        Saved Jobs
+                    </h2>
+
+                    <p>
+                        Your created job descriptions
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="empty-result">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-briefcase"></i>
+
+                </div>
+
+                <h2>
+                    No jobs created yet
+                </h2>
+
+                <p>
+                    Create your first job description above.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            <span>
+                © 2026 ResumeAI
+            </span>
+
+            <span>
+                AI Resume Screening & Candidate Shortlisting
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<script src="jobs.js"></script>
+
+</body>
+
+</html>
