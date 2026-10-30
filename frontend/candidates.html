@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Candidates &amp; Screening | ResumeAI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <div>
+                    <h2>ResumeAI</h2>
+                    <span>Smart Recruitment</span>
+                </div>
+            </div>
+
+            <nav>
+
+                <a href="index.html">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    Dashboard
+                </a>
+
+                <a href="candidates.html" class="active" id="navCandidates">
+                    <i class="fa-solid fa-users"></i>
+                    Candidates &amp; Screening
+                </a>
+
+                <a href="jobs.html">
+                    <i class="fa-solid fa-briefcase"></i>
+                    Job Descriptions
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="ai-box">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <div>
+                        <b>AI Powered</b>
+                        <small>Smart candidate analysis</small>
+                    </div>
+                </div>
+
+                <a href="#" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+
+        <main class="main">
+
+            <!-- Top Bar -->
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Candidate Management &amp; Screening</h1>
+
+                    <p>
+                        Screen resume batches and search candidates using skill-based ANY/ALL logic
+                    </p>
+                </div>
+
+                <div class="profile">
+
+                    <div class="profile-icon">
+                        AG
+                    </div>
+
+                    <div>
+                        <b id="userEmailBadge">Administrator</b>
+                        <small>Recruiter</small>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- TABS -->
+
+            <div class="view-tabs">
+
+                <button class="tab-btn active" id="tabBtnScreen" onclick="switchView('screen')">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Batch Resume Screening
+                </button>
+
+                <button class="tab-btn" id="tabBtnSearch" onclick="switchView('search')">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Candidate Database &amp; Skill Search
+                </button>
+
+            </div>
+
+
+            <!-- =========================================
+                 VIEW 1: BATCH SCREENING
+            ========================================= -->
+
+            <div id="viewScreen">
+
+                <!-- Screening Setup Card -->
+
+                <section class="upload-card">
+
+                    <div class="section-title">
+
+                        <div class="title-icon">
+                            <i class="fa-solid fa-filter"></i>
+                        </div>
+
+                        <div>
+                            <h2>Screen Multiple Resumes</h2>
+                            <p>Select a saved job or enter a custom job description and upload PDF resumes</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Job Selection -->
+
+                    <div class="form-row" style="margin-bottom: 16px;">
+
+                        <div class="form-group" style="flex: 1;">
+
+                            <label for="screenJobSelect" style="font-weight: 600; color: #374151; margin-bottom: 6px; display: block;">
+                                Choose Saved Job Description
+                            </label>
+
+                            <select id="screenJobSelect" class="custom-select" style="width: 100%; height: 44px;">
+                                <option value="">-- Use Custom Job Description Below --</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Job Description Input -->
+
+                    <div class="form-group">
+
+                        <label for="jobDescription" style="font-weight: 600; color: #374151; margin-bottom: 6px; display: block;">
+                            Job Description Requirements
+                        </label>
+
+                        <textarea
+                            id="jobDescription"
+                            rows="6"
+                            placeholder="Enter the job requirements here..."
+                        ></textarea>
+
+                    </div>
+
+                    <!-- Resume Upload -->
+
+                    <div class="form-group">
+
+                        <div style="font-weight: 600; color: #374151; margin-bottom: 6px;">
+                            Candidate Resumes (PDF)
+                        </div>
+
+                        <label for="resumeFiles" class="upload-box" id="uploadDropzone" tabindex="0">
+
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                            <h3>Upload Candidate Resumes</h3>
+
+                            <p>Click anywhere to select or drag &amp; drop PDF files</p>
+
+                            <span class="upload-browse-btn">
+                                <i class="fa-solid fa-folder-open"></i> Browse PDF Files
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="file"
+                            id="resumeFiles"
+                            accept=".pdf,application/pdf"
+                            multiple
+                            style="display: none;"
+                        >
+
+                    </div>
+
+                    <!-- Selected Files Display -->
+
+                    <div id="selectedFiles" class="selected-files"></div>
+
+                    <!-- Action Buttons -->
+
+                    <div class="form-actions">
+
+                        <button class="screen-btn" onclick="screenCandidates()">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            Screen &amp; Rank Candidates
+                        </button>
+
+                    </div>
+
+                    <!-- Status Notification -->
+
+                    <div id="candidateStatus" class="screen-status"></div>
+
+                </section>
+
+                <!-- Failed Files Notice Container -->
+
+                <div id="failedFilesContainer"></div>
+
+                <!-- Screening Results Container -->
+
+                <section id="candidateResults" class="upload-card candidate-results">
+
+                    <div class="empty-result">
+
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+
+                        <h2>No candidates screened yet</h2>
+
+                        <p>Upload resumes and run screening above to see ranking and match breakdowns.</p>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- =========================================
+                 VIEW 2: CANDIDATE DATABASE & SKILL SEARCH
+            ========================================= -->
+
+            <div id="viewSearch" style="display: none;">
+
+                <section class="upload-card">
+
+                    <div class="section-title">
+
+                        <div class="title-icon" style="background: #fdf2f8; color: #db2777;">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+
+                        <div>
+                            <h2>Candidate Skill-Based Search</h2>
+                            <p>Find candidates matching ANY or ALL required skill criteria across all stored resumes</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Skill Search Inputs -->
+
+                    <div class="search-controls-bar">
+
+                        <div style="flex: 2; min-width: 250px;">
+                            <label style="font-size: 12px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">
+                                Enter Skills to Match (comma-separated or click tags below):
+                            </label>
+                            <input
+                                type="text"
+                                id="skillSearchInput"
+                                class="custom-input"
+                                placeholder="e.g. Python, SQL, React, AWS, Docker"
+                                style="width: 100%;"
+                            >
+                        </div>
+
+                        <!-- Match Mode ANY vs ALL -->
+
+                        <div>
+                            <label style="font-size: 12px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">
+                                Match Mode:
+                            </label>
+                            <div class="mode-toggle-group">
+                                <button type="button" class="mode-btn active" id="btnModeAny" onclick="setSearchMode('ANY')">
+                                    Match ANY
+                                </button>
+                                <button type="button" class="mode-btn" id="btnModeAll" onclick="setSearchMode('ALL')">
+                                    Match ALL
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Status Filter -->
+
+                        <div>
+                            <label style="font-size: 12px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">
+                                Shortlist Status:
+                            </label>
+                            <select id="dbStatusFilter" class="custom-select">
+                                <option value="all">All Statuses</option>
+                                <option value="Shortlisted">Shortlisted</option>
+                                <option value="Review">Under Review</option>
+                                <option value="Not shortlisted">Not Shortlisted</option>
+                            </select>
+                        </div>
+
+                        <!-- Min Score Filter -->
+
+                        <div>
+                            <label style="font-size: 12px; font-weight: 700; color: #475569; display: block; margin-bottom: 4px;">
+                                Min Score:
+                            </label>
+                            <input
+                                type="number"
+                                id="dbMinScore"
+                                class="custom-input"
+                                placeholder="0"
+                                min="0"
+                                max="100"
+                                style="width: 80px;"
+                            >
+                        </div>
+
+                        <div style="display: flex; align-items: flex-end; gap: 8px;">
+                            <button class="screen-btn" style="margin: 0; padding: 10px 18px;" onclick="executeSkillSearch()">
+                                <i class="fa-solid fa-search"></i> Search
+                            </button>
+                            <button type="button" class="custom-select" style="cursor: pointer; padding: 9px 14px;" onclick="resetSkillSearch()">
+                                Reset
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <!-- Quick Skill Tags -->
+
+                    <div style="margin-bottom: 20px;">
+                        <span style="font-size: 12px; font-weight: 600; color: #64748b; margin-right: 8px;">Quick Add Skill:</span>
+                        <div id="quickSkillPills" class="skill-tags" style="display: inline-flex; flex-wrap: wrap; gap: 6px;">
+                            <!-- Populated in JS -->
+                        </div>
+                    </div>
+
+                    <!-- Search Results Info Header -->
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                        <div>
+                            <h3 id="searchResultsHeading" style="margin: 0; color: #1e293b;">Candidate Database</h3>
+                            <small id="searchResultsSub" style="color: #64748b;">Showing all available candidate records</small>
+                        </div>
+                        <div>
+                            <button class="screen-btn" onclick="exportDatabaseCSV()" style="margin: 0; padding: 9px 16px; font-size: 13px;">
+                                <i class="fa-solid fa-file-csv"></i> Download CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Candidate Database Table -->
+
+                    <div id="databaseTableContainer">
+                        <div class="empty-result">
+                            <div class="empty-icon">
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                            </div>
+                            <h2>Loading candidates...</h2>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+
+            <!-- Footer -->
+
+            <footer>
+                <span>© 2026 ResumeAI</span>
+                <span>AI Resume Screening &amp; Candidate Shortlisting System</span>
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         CANDIDATE DETAIL MODAL
+    ========================================= -->
+
+    <div id="candidateDetailModal" class="modal-overlay" style="display: none;">
+
+        <div class="modal-content">
+
+            <button class="modal-close-btn" onclick="closeCandidateModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modalBody">
+                <!-- Dynamically loaded -->
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="candidates.js"></script>
+
+</body>
+
+</html>

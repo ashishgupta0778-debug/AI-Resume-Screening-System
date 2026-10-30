@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | ResumeAI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body class="login-page">
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+
+                <div class="login-logo-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+
+                <h1>ResumeAI</h1>
+
+                <p>
+                    AI Resume Screening & Candidate Shortlisting
+                </p>
+
+            </div>
+
+
+            <div class="login-heading">
+
+                <h2>Welcome Back</h2>
+
+                <p>
+                    Sign in to your admin dashboard
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="login-input">
+
+                    <label>Email Address</label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="login-input">
+
+                    <label>Password</label>
+
+                    <div class="input-box">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <i
+                            class="fa-solid fa-eye password-toggle"
+                            id="togglePassword"
+                        ></i>
+
+                    </div>
+
+                </div>
+
+
+                <div id="loginMessage"></div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+
+                    <i class="fa-solid fa-right-to-bracket"></i>
+
+                    Login to Dashboard
+
+                </button>
+
+            </form>
+
+
+            <div class="login-footer">
+
+                <span>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Admin Access
+                </span>
+
+                <span>
+                    © 2026 ResumeAI
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="login.js"></script>
+
+</body>
+
+</html>

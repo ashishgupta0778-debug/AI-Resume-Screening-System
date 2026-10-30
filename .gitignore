@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .env
 data/resume/Resume.csv/
+
+backup/
+*.sqlite3
+*.db

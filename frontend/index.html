@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AI Resume Screening</title>
+    <title>Recruiter Dashboard | ResumeAI</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -34,31 +34,31 @@
                 </div>
             </div>
 
+            <!-- SIDEBAR NAVIGATION -->
 
             <nav>
 
-                <a class="active">
+                <a href="index.html" class="active">
                     <i class="fa-solid fa-chart-pie"></i>
                     Dashboard
                 </a>
 
-                <a>
-                    <i class="fa-solid fa-file-lines"></i>
-                    Resume Screening
+                <a href="candidates.html">
+                    <i class="fa-solid fa-users"></i>
+                    Candidate Screening
                 </a>
 
-                <a>
-                    <i class="fa-solid fa-user-group"></i>
-                    Candidates
+                <a href="candidates.html?tab=search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Skill Search
                 </a>
 
-                <a>
+                <a href="jobs.html">
                     <i class="fa-solid fa-briefcase"></i>
-                    Job Description
+                    Job Descriptions
                 </a>
 
             </nav>
-
 
             <div class="sidebar-bottom">
 
@@ -73,10 +73,14 @@
 
                 </div>
 
+                <a href="#" onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+
             </div>
 
         </aside>
-
 
         <!-- MAIN CONTENT -->
 
@@ -87,13 +91,12 @@
             <header class="topbar">
 
                 <div>
-                    <h1>Resume Screening Dashboard</h1>
+                    <h1>Recruiter Dashboard</h1>
 
                     <p>
-                        Analyze and shortlist candidates using AI
+                        AI-powered candidate screening and hiring decision support
                     </p>
                 </div>
-
 
                 <div class="profile">
 
@@ -102,172 +105,272 @@
                     </div>
 
                     <div>
-                        <b>Recruiter</b>
-                        <small>Admin</small>
+                        <b id="userEmailBadge">Administrator</b>
+                        <small>Recruiter</small>
                     </div>
 
                 </div>
 
             </header>
 
+            <!-- STATS CARDS GRID -->
 
-            <!-- WELCOME BANNER -->
+            <div class="dashboard-stats-grid">
 
-            <section class="hero">
-
-                <div class="hero-content">
-
-                    <span class="badge">
-                        <i class="fa-solid fa-bolt"></i>
-                        AI Powered Screening
-                    </span>
-
-                    <h2>
-                        Find the right candidate
-                        <span>faster.</span>
-                    </h2>
-
-                    <p>
-                        Upload a resume and let our AI analyze
-                        skills, experience, education and job relevance.
-                    </p>
-
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #eef2ff; color: #4f46e5;">
+                        <i class="fa-solid fa-file-invoice"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span>Total Screened</span>
+                        <strong id="statTotalScreened">0</strong>
+                    </div>
                 </div>
 
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #f0fdf4; color: #16a34a;">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span>Unique Candidates</span>
+                        <strong id="statTotalCandidates">0</strong>
+                    </div>
+                </div>
 
-                <div class="hero-icon">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #ecfdf5; color: #059669;">
+                        <i class="fa-solid fa-user-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span>Shortlisted</span>
+                        <strong id="statShortlisted" style="color: #059669;">0</strong>
+                    </div>
+                </div>
 
-                    <i class="fa-solid fa-brain"></i>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fffbeb; color: #d97706;">
+                        <i class="fa-solid fa-user-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span>Under Review</span>
+                        <strong id="statReview" style="color: #d97706;">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #f5f3ff; color: #7c3aed;">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span>Active Jobs</span>
+                        <strong id="statTotalJobs">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="quick-actions-grid">
+
+                <a href="candidates.html" class="action-card">
+                    <div class="action-icon">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <h3>Batch Resume Screening</h3>
+                    <p>Upload multiple candidate PDFs and match them against any job description with instant AI ranking.</p>
+                </a>
+
+                <a href="candidates.html?tab=search" class="action-card">
+                    <div class="action-icon" style="background: #fdf2f8; color: #db2777;">
+                        <i class="fa-solid fa-filter"></i>
+                    </div>
+                    <h3>Skill-Based Candidate Search</h3>
+                    <p>Filter candidates across all screened resumes using ANY or ALL required skill combinations.</p>
+                </a>
+
+                <a href="jobs.html" class="action-card">
+                    <div class="action-icon" style="background: #eff6ff; color: #2563eb;">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <h3>Create & Manage Jobs</h3>
+                    <p>Add new job descriptions, configure skill requirements, experience thresholds, and degrees.</p>
+                </a>
+
+            </div>
+
+            <!-- SCORE DISTRIBUTION -->
+
+            <section class="score-distribution-card">
+
+                <div class="section-title">
+                    <div class="title-icon">
+                        <i class="fa-solid fa-chart-column"></i>
+                    </div>
+                    <div>
+                        <h2>Candidate Score Distribution</h2>
+                        <p>Real-time matching score breakdown across screened candidates</p>
+                    </div>
+                </div>
+
+                <div class="distribution-bars">
+
+                    <div class="dist-bar-item">
+                        <span class="dist-label">80% - 100%</span>
+                        <div class="dist-bar-track">
+                            <div id="bar80" class="dist-bar-fill" style="width: 0%; background: #10b981;"></div>
+                        </div>
+                        <span id="count80" class="dist-count">0</span>
+                    </div>
+
+                    <div class="dist-bar-item">
+                        <span class="dist-label">60% - 79%</span>
+                        <div class="dist-bar-track">
+                            <div id="bar60" class="dist-bar-fill" style="width: 0%; background: #6366f1;"></div>
+                        </div>
+                        <span id="count60" class="dist-count">0</span>
+                    </div>
+
+                    <div class="dist-bar-item">
+                        <span class="dist-label">40% - 59%</span>
+                        <div class="dist-bar-track">
+                            <div id="bar40" class="dist-bar-fill" style="width: 0%; background: #f59e0b;"></div>
+                        </div>
+                        <span id="count40" class="dist-count">0</span>
+                    </div>
+
+                    <div class="dist-bar-item">
+                        <span class="dist-label">&lt; 40%</span>
+                        <div class="dist-bar-track">
+                            <div id="bar0" class="dist-bar-fill" style="width: 0%; background: #ef4444;"></div>
+                        </div>
+                        <span id="count0" class="dist-count">0</span>
+                    </div>
 
                 </div>
 
             </section>
 
-
-            <!-- UPLOAD -->
+            <!-- INSTANT SINGLE RESUME SCREENING -->
 
             <section class="upload-card">
 
                 <div class="section-title">
-
                     <div class="title-icon">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <i class="fa-solid fa-bolt"></i>
                     </div>
-
                     <div>
-                        <h2>Screen a Resume</h2>
+                        <h2>Instant Single Resume Screening</h2>
+                        <p>Analyze a single PDF resume against a selected job or custom requirements</p>
+                    </div>
+                </div>
 
-                        <p>
-                            Upload a PDF resume to start AI analysis
-                        </p>
+                <div class="form-row" style="margin-bottom: 18px;">
+
+                    <div class="form-group" style="flex: 1;">
+                        <label for="jobSelect" style="font-weight: 600; color: #374151; margin-bottom: 6px; display: block;">
+                            Select Saved Job
+                        </label>
+                        <select id="jobSelect" class="custom-select" style="width: 100%; height: 44px;">
+                            <option value="">-- Use Custom Job Description Below --</option>
+                        </select>
                     </div>
 
                 </div>
 
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="jobDescription" style="font-weight: 600; color: #374151; margin-bottom: 6px; display: block;">
+                        Job Description (or edit selected job requirements)
+                    </label>
+                    <textarea
+                        id="jobDescription"
+                        rows="4"
+                        placeholder="Paste custom job description here, or select a job from the dropdown above..."
+                        style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 10px; font-family: inherit; font-size: 14px; resize: vertical;"
+                    ></textarea>
+                </div>
 
                 <div class="upload-area">
 
                     <div class="upload-icon">
-
                         <i class="fa-solid fa-file-pdf"></i>
-
                     </div>
 
-
-                    <h3>
-                        Upload your resume
-                    </h3>
-
-
-                    <p>
-                        PDF files only • Maximum recommended size 10MB
-                    </p>
-
+                    <h3>Upload candidate resume</h3>
+                    <p>PDF format only</p>
 
                     <label class="choose-btn">
-
                         <i class="fa-solid fa-folder-open"></i>
-
-                        Choose Resume
-
-                        <input
-                            type="file"
-                            id="resumeFile"
-                            accept=".pdf"
-                        >
-
+                        Choose PDF Resume
+                        <input type="file" id="resumeFile" accept=".pdf">
                     </label>
 
-
-                    <button
-                        class="screen-btn"
-                        onclick="screenResume()"
-                    >
-
+                    <button class="screen-btn" onclick="screenResume()">
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
-
                         Analyze Resume
-
                     </button>
 
                 </div>
-
 
                 <div id="status"></div>
 
             </section>
 
+            <!-- SINGLE SCREENING RESULTS -->
 
-            <!-- RESULT -->
-
-            <section
-                id="result"
-                class="result-section"
-            >
+            <section id="result" class="result-section">
 
                 <div class="empty-result">
-
                     <div class="empty-icon">
-
                         <i class="fa-solid fa-chart-simple"></i>
-
                     </div>
-
-                    <h2>
-                        Candidate Analysis
-                    </h2>
-
+                    <h2>Candidate Analysis</h2>
                     <p>
-                        Upload a resume above to view AI-generated
-                        screening results.
+                        Upload a resume above to view AI-generated match breakdown, rule-based scoring, and TF-IDF similarity.
                     </p>
-
                 </div>
 
             </section>
 
+            <!-- RECENT SESSIONS TABLE -->
+
+            <section class="upload-card" style="margin-top: 25px;">
+
+                <div class="section-title">
+                    <div class="title-icon">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <div>
+                        <h2>Recent Screening Activity</h2>
+                        <p>History of screening sessions and top candidates</p>
+                    </div>
+                </div>
+
+                <div id="recentActivityContainer">
+                    <div class="empty-result">
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-inbox"></i>
+                        </div>
+                        <h2>No screening activity yet</h2>
+                        <p>Screen resumes above to see session records appear here.</p>
+                    </div>
+                </div>
+
+            </section>
 
             <!-- FOOTER -->
 
             <footer>
-
-                <span>
-                    © 2026 ResumeAI
-                </span>
-
-                <span>
-                    AI Resume Screening & Candidate Shortlisting
-                </span>
-
+                <span>© 2026 ResumeAI</span>
+                <span>AI Resume Screening &amp; Candidate Shortlisting System</span>
             </footer>
 
         </main>
 
     </div>
 
-
+    <!-- JAVASCRIPT -->
     <script src="script.js"></script>
 
 </body>
-
 </html>
