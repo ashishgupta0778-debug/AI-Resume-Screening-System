@@ -10,15 +10,15 @@
   to = "/login.html"
   status = 302
 
-# Proxy backend API requests (update backend URL once your FastAPI service is deployed)
-# [[redirects]]
-#   from = "/api/*"
-#   to = "https://your-backend-service.onrender.com/api/:splat"
-#   status = 200
-#   force = true
-#
-# [[redirects]]
-#   from = "/screen-*"
-#   to = "https://your-backend-service.onrender.com/screen-:splat"
-#   status = 200
-#   force = true
+# Proxy backend API requests to live FastAPI backend on Render
+[[redirects]]
+  from = "/api/*"
+  to = "https://ai-resume-screening-system.onrender.com/api/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/screen-*"
+  to = "https://ai-resume-screening-system.onrender.com/screen-:splat"
+  status = 200
+  force = false

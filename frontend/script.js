@@ -1,6 +1,6 @@
 // ================= CONFIGURATION =================
 
-const API_BASE_URL = (() => {
+const API_BASE_URL = window.getApiBaseUrl ? window.getApiBaseUrl() : (() => {
     const stored = localStorage.getItem("resumeAI_backend_url");
     if (stored) return stored.replace(/\/+$/, "");
     if (window.location.port === "5500" || window.location.protocol === "file:") {

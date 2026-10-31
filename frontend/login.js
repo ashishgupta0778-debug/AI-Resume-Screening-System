@@ -1,4 +1,4 @@
-const API_BASE_URL = (() => {
+const API_BASE_URL = window.getApiBaseUrl ? window.getApiBaseUrl() : (() => {
     const stored = localStorage.getItem("resumeAI_backend_url");
     if (stored) return stored.replace(/\/+$/, "");
     if (window.location.port === "5500" || window.location.protocol === "file:") {
@@ -80,3 +80,38 @@ loginForm.addEventListener("submit", async function (event) {
         submitBtn.disabled = false;
     }
 });
+
+
+// ================= BACKEND HEALTH & CONFIGURATION =================
+
+async function checkBackendHealth() {
+    const statusText = document.getElementById("backendStatusText");
+    const badge = document.getElementById("backendStatusBadge");
+    if (!statusText || !badge) return;
+
+    try {
+        const res = await fetch(`${API_BASE_URL}/`, { method: "GET" });
+        if (res.ok) {
+            statusText.innerText = "Backend Online";
+            statusText.style.color = "#10b981";
+            badge.style.color = "#10b981";
+        } else {
+            statusText.innerText = "Backend Issue";
+            statusText.style.color = "#f59e0b";
+        }
+    } catch (e) {
+        statusText.innerText = "Configure Backend";
+        statusText.style.color = "#6366f1";
+    }
+
+    badge.onclick = function () {
+        const current = API_BASE_URL;
+        const entered = prompt("Configure Live Backend URL (Render):", current);
+        if (entered && entered.trim() && entered.trim() !== current) {
+            localStorage.setItem("resumeAI_backend_url", entered.trim());
+            window.location.reload();
+        }
+    };
+}
+
+document.addEventListener("DOMContentLoaded", checkBackendHealth);
