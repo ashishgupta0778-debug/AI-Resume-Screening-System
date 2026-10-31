@@ -131,14 +131,15 @@ def init_db():
     );
     """)
 
-    # Seed Admin User if none exists
-    cursor.execute("SELECT id FROM users WHERE email = ?", ("admin@resumeai.com",))
-    if not cursor.fetchone():
-        pwd_hash, salt = hash_password("admin123")
-        cursor.execute(
-            "INSERT INTO users (email, password_hash, salt, role) VALUES (?, ?, ?, ?)",
-            ("admin@resumeai.com", pwd_hash, salt, "admin")
-        )
+    # Seed Admin Users if none exists
+    for admin_email in ["admin@resumeai.com", "admin@hcl.com"]:
+        cursor.execute("SELECT id FROM users WHERE email = ?", (admin_email,))
+        if not cursor.fetchone():
+            pwd_hash, salt = hash_password("admin123")
+            cursor.execute(
+                "INSERT INTO users (email, password_hash, salt, role) VALUES (?, ?, ?, ?)",
+                (admin_email, pwd_hash, salt, "admin")
+            )
 
     # Seed Default Job if jobs table is empty
     cursor.execute("SELECT id FROM jobs LIMIT 1")
