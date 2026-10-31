@@ -7,3 +7,5 @@ data/resume/Resume.csv/
 backup/
 *.sqlite3
 *.db
+
+.netlify/
