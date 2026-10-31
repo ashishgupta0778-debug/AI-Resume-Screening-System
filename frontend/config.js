@@ -4,7 +4,7 @@
 
 window.APP_CONFIG = {
     // Default live FastAPI backend hosted on Render
-    BACKEND_URL: "https://ai-resume-screening-system.onrender.com",
+    BACKEND_URL: "https://ai-resume-screening-system-nfks.onrender.com",
 
     // Fallback local development backend
     LOCAL_BACKEND_URL: "http://127.0.0.1:8000"

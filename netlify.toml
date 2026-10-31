@@ -13,12 +13,12 @@
 # Proxy backend API requests to live FastAPI backend on Render
 [[redirects]]
   from = "/api/*"
-  to = "https://ai-resume-screening-system.onrender.com/api/:splat"
+  to = "https://ai-resume-screening-system-nfks.onrender.com/api/:splat"
   status = 200
   force = false
 
 [[redirects]]
   from = "/screen-*"
-  to = "https://ai-resume-screening-system.onrender.com/screen-:splat"
+  to = "https://ai-resume-screening-system-nfks.onrender.com/screen-:splat"
   status = 200
   force = false
